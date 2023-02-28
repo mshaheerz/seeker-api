@@ -37,11 +37,11 @@ app.use(cookieParser())
 
 //routes
 
-app.use('api/',userRouter)
-app.use('api/company',companyRouter)
-app.use('api/admin',adminRouter)
-app.use('api/chat',chatRouter)
-app.use('api/message',messageRouter)
+app.use('/api/',userRouter)
+app.use('/api/company',companyRouter)
+app.use('/api/admin',adminRouter)
+app.use('/api/chat',chatRouter)
+app.use('/api/message',messageRouter)
 
 
 app.listen(port,()=>{
