@@ -21,11 +21,13 @@ connectDb(DATABASE_URL)
 
 
 //middlewares
-app.use(cors({
-    origin: ['http://localhost:3000'],
-    methods:["GET","POST","DELETE","PUT","PATCH"],
-    credentials:true,
-}))
+app.use(cors(
+    // {
+    //     origin: ['http://localhost:3000'],
+    //     methods:["GET","POST","DELETE","PUT","PATCH"],
+    //     credentials:true,
+    // }
+))
 app.use(logger("dev"))
 app.use(express.urlencoded({ extended:false }));
 app.use(express.json({extended: false, limit: '50mb'}));
