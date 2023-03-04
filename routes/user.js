@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router()
 import { companyJwt, verifyJWT } from '../middlewares/auth.js'
-import { getUserNotification, deleteComment, deleteReport, getCompanyNotification, PostNotification, flagPost, getUserPosts, getOneUserNoAuth, UserSearch, FilterByJobType, JobSearch, getCompanyWiseJobs, getOneCompanyNoAuth, getAllcompanies, getAppliedJob, getOneAppliedJob, getProfilePosts, applyJob, getOnePostNoAuth, addcomment, getOneposts, addLikes, deleteLikes, fetchLikes, fetchComments, deletePost, userPostUpdate, getposts, userPost, signup, signin, validateSignup, isUserAuth, getAllposts, editUser, DeleteNotification } from "../controller/userController.js";
+import { AnswerQuestion,PostQuestions,GetQuestions,DeleteQuestion,getUserNotification, deleteComment, deleteReport, getCompanyNotification, PostNotification, flagPost, getUserPosts, getOneUserNoAuth, UserSearch, FilterByJobType, JobSearch, getCompanyWiseJobs, getOneCompanyNoAuth, getAllcompanies, getAppliedJob, getOneAppliedJob, getProfilePosts, applyJob, getOnePostNoAuth, addcomment, getOneposts, addLikes, deleteLikes, fetchLikes, fetchComments, deletePost, userPostUpdate, getposts, userPost, signup, signin, validateSignup, isUserAuth, getAllposts, editUser, DeleteNotification } from "../controller/userController.js";
 import { getAllUserDetails } from "../controller/adminController.js";
 
 //get methods
@@ -24,6 +24,12 @@ router.get('/get_user_posts/:userId', verifyJWT, getUserPosts)
 router.get('/get_oneuser/:userId', getOneUserNoAuth)
 router.get('/GetCompanynotification/:companyId', companyJwt, getCompanyNotification)
 router.get('/notification/:userId', verifyJWT, getUserNotification)
+
+
+router.get('/question/:companyId',GetQuestions)
+router.post('/question',verifyJWT,PostQuestions)
+router.delete('/question/:id',DeleteQuestion)
+router.patch('/question/:questionId',companyJwt,AnswerQuestion)
 
 //post methods
 router.post('/signup', signup)

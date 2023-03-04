@@ -9,6 +9,7 @@ import jobapplymodel from "../model/jobapplySchema.js";
 import companymodel from "../model/company/companySchema.js";
 import notificationmodel from "../model/notificationSchema.js";
 import reportmodel from "../model/reportSchema.js";
+import questionModel from "../model/questionSchema.js";
 
 export async function validateSignup(req, res) {
   try {
@@ -840,3 +841,71 @@ export async function deleteComment(req, res) {
 
 
 
+export async function PostQuestions(req, res) {
+  try {
+
+    const {userId,companyId,question} = req.body
+
+       await questionModel.create({
+        user:userId,
+        company:companyId,
+        question:question
+       })
+       res.json({ "status": "success", "message": "question creation success" })
+
+
+  } catch (error) {
+    res.json({ "status": "failed", "message": error.message })
+  
+  }
+}
+
+export async function GetQuestions(req, res) {
+  try {
+
+    const companyId = req.params.companyId
+
+       const question = await questionModel.find({company:companyId}).populate("user").sort({updatedAt:-1})
+       res.json({ "status": "success", question })
+
+
+  } catch (error) {
+    res.json({ "status": "failed", "message": error.message })
+  
+  }
+}
+
+
+export async function DeleteQuestion(req, res) {
+  try {
+
+    const questionId = req.params.id
+
+       await questionModel.findByIdAndDelete(questionId)
+       res.json({ "status": "success", "message":"success" })
+
+
+  } catch (error) {
+    res.json({ "status": "failed", "message": error.message })
+  
+  }
+}
+
+
+export async function AnswerQuestion(req, res) {
+  try {
+
+    const questionId = req.params.questionId
+    const {answer} = req.body
+    console.log(answer)
+
+       await questionModel.findByIdAndUpdate(questionId,{answer:answer})
+       res.json({ "status": "success", "message":"success" })
+
+
+  } catch (error) {
+    console.log(error)
+    res.json({ "status": "failed", "message": error.message })
+  
+  }
+}

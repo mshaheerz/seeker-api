@@ -357,3 +357,13 @@ export async function Companysignup(req,res){
       res.json({ "status": "failed", "message": error.message })
     }
   }
+
+  export async function DeleteJob(req, res) {
+    try {
+      const jobId = req.params.jobId
+       await jobmodel.findByIdAndDelete(jobId)
+      res.json({ "status": "success", "message": "deleted successfully" })
+    } catch (error) {
+      res.json({ "status": "failed", "message": error.message })
+    }
+  }
