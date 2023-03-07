@@ -10,6 +10,7 @@ import companymodel from "../model/company/companySchema.js";
 import notificationmodel from "../model/notificationSchema.js";
 import reportmodel from "../model/reportSchema.js";
 import questionModel from "../model/questionSchema.js";
+import chatmodel from "../model/chatSchema.js";
 
 export async function validateSignup(req, res) {
   try {
@@ -594,7 +595,7 @@ export async function getAppliedJob(req, res) {
 export async function getAllcompanies(req, res) {
   try {
 
-    const company = await companymodel.find({})
+    const company = await companymodel.find({isBanned:false})
     res.json({ "status": "success", company: company })
   } catch (error) {
     res.json({ "status": "failed", "message": error.message })
@@ -900,6 +901,22 @@ export async function AnswerQuestion(req, res) {
     console.log(answer)
 
        await questionModel.findByIdAndUpdate(questionId,{answer:answer})
+       res.json({ "status": "success", "message":"success" })
+
+
+  } catch (error) {
+    console.log(error)
+    res.json({ "status": "failed", "message": error.message })
+  
+  }
+}
+
+export async function ChatSorter(req, res) {
+  try {
+
+    const ChatId = req.params.id
+      const srt=String(Math.random() * 10)
+       await chatmodel.findByIdAndUpdate(ChatId,{sorter:srt})
        res.json({ "status": "success", "message":"success" })
 
 

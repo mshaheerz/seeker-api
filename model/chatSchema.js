@@ -7,6 +7,9 @@ const ChatSchema = new mongoose.Schema({
         type: Array,
 
     },
+    sorter:{
+        type:String
+    }
 },
     {
         timestamps: true,
