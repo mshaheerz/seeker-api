@@ -22,6 +22,7 @@ export const getMessages = async(req, res)=> {
 
     try {
         const result = await messagemodel.find({chatId});
+        await messagemodel.updateMany({chatId:chatId},{readed:true})
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json(error);

@@ -15,6 +15,10 @@ const MessageSchema = new mongoose.Schema({
 
     text: {
         type: String,
+    },
+    readed:{
+        type:Boolean,
+        default: false
     }
 
 },

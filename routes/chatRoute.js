@@ -5,5 +5,5 @@ import { getchatUser,createChat,userChats,findChat } from "../controller/chatCon
 router.post('/',createChat)
 router.get('/:userId',userChats ) //userChats
 router.get('/find/:firstId/:secondId', findChat) //findChat
-router.get('/getchatusers/:userId',getchatUser)
+router.get('/getchatusers/:userId/:chatId',getchatUser)
 export default router

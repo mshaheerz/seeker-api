@@ -1,5 +1,6 @@
 import chatmodel from "../model/chatSchema.js";
 import companymodel from "../model/company/companySchema.js";
+import messagemodel from "../model/messageModel.js";
 import usermodel from "../model/userSchema.js";
 
 export const createChat = async(req, res)=>{
@@ -49,14 +50,16 @@ export const findChat = async(req, res)=>{
 export const getchatUser = async(req, res)=>{
     try {
         const id = req.params.userId
+        const chatId = req.params.chatId
       const user = await usermodel.findById(id)
-    
+      const result = await messagemodel.find({chatId:chatId,senderId:id,readed:false})
+     console.log(result.length)
       if(user){
-        res.json({status:'success',user:user})
+        res.json({status:'success',user:user,result:result?.length})
       }else{
         const company = await companymodel.findById(id)
         if(company){
-            res.json({status:'success',user:company})
+            res.json({status:'success',user:company,result:result?.length})
         }
       }
       
