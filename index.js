@@ -23,7 +23,7 @@ connectDb(DATABASE_URL)
 //middlewares
 app.use(cors(
     {
-        origin: ['http://job.buyelectro.shop'],
+        // origin: ['http://job.buyelectro.shop'],
         // methods:["GET","POST","DELETE","PUT","PATCH"],
         // credentials:true,
     }
