@@ -21,13 +21,13 @@ connectDb(DATABASE_URL)
 
 
 //middlewares
-app.use(cors(
-    {
-        // origin: ['http://job.buyelectro.shop'],
-        // methods:["GET","POST","DELETE","PUT","PATCH"],
-        // credentials:true,
-    }
-))
+app.use(cors())
+    // {
+    //     origin: ['http://job.buyelectro.shop'],
+    //     methods:["GET","POST","DELETE","PUT","PATCH"],
+    //     credentials:true,
+    // }
+
 app.use(logger("dev"))
 app.use(express.urlencoded({ extended:false }));
 app.use(express.json({extended: false, limit: '50mb'}));
