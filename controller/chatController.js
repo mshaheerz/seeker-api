@@ -50,15 +50,15 @@ export const findChat = async(req, res)=>{
 export const getchatUser = async(req, res)=>{
     try {
         const id = req.params.userId
-        // const chatId = req.params.chatId
+        const chatId = req.params.chatId
       const user = await usermodel.findById(id)
-      // const result = await messagemodel.find({chatId:chatId,senderId:id,readed:false})
+      const result = await messagemodel.find({chatId:chatId,senderId:id,readed:false})
       if(user){
-        res.json({status:'success',user:user})  //result:result?.length
+        res.json({status:'success',user:user,result:result?.length})  //result:result?.length
       }else{
         const company = await companymodel.findById(id)
         if(company){
-            res.json({status:'success',user:company}) //result:result?.length
+            res.json({status:'success',user:company,result:result?.length}) //result:result?.length
         }
       }
       
